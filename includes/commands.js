@@ -5,5 +5,6 @@
 module.exports = {
     Help: require("../src/commands/help/Help.js").Help,
     Clear: require("../src/commands/Clear.js").Clear,
-    Profil: require("../src/commands/Profil.js").Profil
+    Profil: require("../src/commands/Profil.js").Profil,
+    Link: require("../src/commands/Link.js").Link
 };

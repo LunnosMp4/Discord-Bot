@@ -51,7 +51,7 @@ bot.on("messageCreate", async (message) => {
     // Execute commands
     for (let i = 0; i < commands.length; i++)
         if (command === commands[i][0])
-            commands[i][1](message, args, commands, core);
+            commands[i][1](message, args, commands, core, data);
 });
 
 bot.login(token)

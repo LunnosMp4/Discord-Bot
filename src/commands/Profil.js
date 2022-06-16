@@ -5,7 +5,19 @@
 const { MessageEmbed } = require("discord.js");
 const moment = require("moment");
 
-function Profil(message, args, commands, core)
+function GetStatus(status)
+{
+    if (status === "online")
+        return "Online";
+    else if (status === "idle")
+        return "Idle";
+    else if (status === "dnd")
+        return "Do Not Disturb";
+    else if (status === "offline")
+        return "Offline";
+}
+
+function Profil(message, args, commands, core, data)
 {
     let mem = message.mentions.members.first() || message.member;
     let user = mem.user;
@@ -14,18 +26,26 @@ function Profil(message, args, commands, core)
 
     let color = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
-    let status = message.member.presence.status;
-    if (status === "online")
-        status = "Online";
-    else if (status === "idle")
-        status = "Idle";
-    else if (status === "dnd")
-        status = "Do Not Disturb";
-    else if (status === "offline")
-        status = "Offline";
+    let getSteam = data.log.find(x => x.user == user.id);
+    if (getSteam)
+        getSteam = "Linked !";
+    else
+        getSteam = "Not Linked :(";
+
+    let status = GetStatus(message.member.presence.status);
+
+    const UpFirstChar = string =>
+        `${string.slice(0, 1).toUpperCase()}${string.slice(1)}`;
+    const LowerOtherChar = string =>
+        string.replaceAll(/\S*/g, word =>
+            `${word.slice(0, 1)}${word.slice(1).toLowerCase()}`
+        );
 
     let embed = new MessageEmbed()
-        .setAuthor(`${user.tag}`, user.displayAvatarURL({ dynamic : true }))
+        .setAuthor({
+            name: `${user.tag}`,
+            iconURL: `${user.displayAvatarURL({ dynamic : true })}`
+        })
         .setDescription(`Here The Profil from ${user.username} !`)
         .setColor(color)
         .setThumbnail(user.displayAvatarURL({ dynamic : true }))
@@ -36,12 +56,13 @@ function Profil(message, args, commands, core)
             { name: 'Joined Server', value: `${moment.utc(mem.joinedAt).format('DD/MM/YY')}`, inline: true },
         )
         .addFields(
-            { name: 'Activities', value: `${message.member.presence.activities[0]}`, inline: true },
+            { name: 'Activities', value: `${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].type))}\
+            ${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].name))}`, inline: true },
             { name: '\u200B', value: '\u200B', inline: true },
             { name: 'Status', value: `${status}`, inline: true },
         )
         .addFields(
-            { name: 'Linked account', value: `Steam : Not linked\nSpotify : Not Linked` }
+            { name: 'Linked account', value: `Steam : ${getSteam}\nSpotify : Not Linked :(` }
         )
         .setTimestamp()
         .setFooter({ text : "Pato" });

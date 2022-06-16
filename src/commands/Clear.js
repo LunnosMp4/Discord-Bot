@@ -2,7 +2,7 @@
 // https://github.com/LunnosMp4/Discord-Bot
 // License: MIT
 
-function Clear(message, args, commands, core)
+function Clear(message, args, commands, core, data)
 {
     if (!message.member.permissions.has('MANAGE_MESSAGES'))
         return message.channel.send("You cant use this command since you're missing `manage_messages` perm");

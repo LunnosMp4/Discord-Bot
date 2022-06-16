@@ -3,6 +3,8 @@
 // License: MIT
 
 module.exports = {
+    Help: require("./Help.js").Help,
     Clear: require("./Clear.js").Clear,
-    Profil: require("./Profil.js").Profil
+    Profil: require("./Profil.js").Profil,
+    Link: require("./Link.js").Link
 };

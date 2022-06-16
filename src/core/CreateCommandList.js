@@ -8,9 +8,10 @@ const help = require("../commands/help/include.js");
 function CreateCommandList(commands)
 {
     commands = [
-        ["help", cmd.Help, help.Main],
+        ["help", cmd.Help, help.Help],
         ["clear", cmd.Clear, help.Clear],
-        ["profil", cmd.Profil, help.Profil]
+        ["profil", cmd.Profil, help.Profil],
+        ["link", cmd.Link, help.Link]
     ];
     return commands;
 }
