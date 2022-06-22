@@ -11,7 +11,8 @@ function CreateCommandList(commands)
         ["help", cmd.Help, help.Help],
         ["clear", cmd.Clear, help.Clear],
         ["profil", cmd.Profil, help.Profil],
-        ["link", cmd.Link, help.Link]
+        ["link", cmd.Link, help.Link],
+        ["stat", cmd.Stat, help.Stat]
     ];
     return commands;
 }

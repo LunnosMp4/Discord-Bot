@@ -6,5 +6,6 @@ module.exports = {
     Help: require("./Help.js").Help,
     Clear: require("./Clear.js").Clear,
     Profil: require("./Profil.js").Profil,
-    Link: require("./Link.js").Link
+    Link: require("./Link.js").Link,
+    Stat: require("./Stat.js").Stat
 };

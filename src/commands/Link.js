@@ -52,11 +52,15 @@ function AppList(appList)
         ["steam", SteamLink]
     ];
     return appList;
-    
 }
 
 function Link(message, args, commands, core, data)
 {
+    if (message.channel.type !== "DM")
+    {
+        message.channel.send("This command must be used in DM.");
+        return;
+    }
     if (args.length == 0)
     {
         message.channel.send("Please provide an application with the token.\nSee `'help link` for more information.");
