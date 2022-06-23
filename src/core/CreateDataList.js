@@ -3,16 +3,17 @@
 // License: MIT
 
 const fs = require("fs");
+require("dotenv").config();
 
-function CreateDataList(config, data)
+function CreateDataList(data)
 {
     try {
-        data = JSON.parse(fs.readFileSync(config.data, 'utf8'));
+        data = JSON.parse(fs.readFileSync(process.env.DATA, 'utf8'));
     } catch(e) {
         data = {
             log: []
         }
-        fs.writeFileSync(config.data, JSON.stringify(data));
+        fs.writeFileSync(process.env.DATA, JSON.stringify(data));
     }
     return data;
 }

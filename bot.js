@@ -17,20 +17,19 @@ const bot = new Client({
     ]
 });
 const fs = require("fs");
+require("dotenv").config();
 
-// Load the config file to the bot.
-const config = require("./config.json");
-const prefix = config.prefix;
-const token = config.token;
-const name = config.name;
-const pp = config.pp;
+const prefix = process.env.PREFIX;
+const token = process.env.TOKEN;
+const name = process.env.NAME;
+const pp = process.env.PP;
 
 // Load function from includes files
 const core = require("./includes/core.js");
 
 // Create Database
 let data;
-data = core.CreateDataList(config, data);
+data = core.CreateDataList(data);
 
 let commands;
 commands = core.CreateCommandList(commands)
@@ -49,13 +48,12 @@ bot.on("messageCreate", async (message) => {
         data.log.push({
             user: message.author.id
         });
-        message.author.send(`Hi **${message.author.username}**,
-        Thank for using me !\nYou can use `+ "`" + "'help" + "`" +
+        message.author.send(`Hi **${message.author.username}**, Thank for using me !\nYou can use `+ "`" + "'help" + "`" +
         ` to see all my commands !\n Have a nice day :p`);
         console.log(`${message.author.username} has been added to the database.`);
     }
 
-    fs.writeFileSync(config.data, JSON.stringify(data));
+    fs.writeFileSync(process.env.DATA, JSON.stringify(data));
 
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
     for (let i = 0; i < args.length; i++)

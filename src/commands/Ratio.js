@@ -3,8 +3,8 @@
 // License: MIT
 
 const { MessageEmbed } = require("discord.js");
-var config = require('../../config.json');
 var fs = require('fs');
+require("dotenv").config();
 
 async function CheckWins(message, data, core, mention)
 {
@@ -67,7 +67,7 @@ async function CheckWins(message, data, core, mention)
                 data.log[user2].ratioNb = 1;
                 data.log[user2].ratio = 0;
             }
-            fs.writeFileSync(config.data, JSON.stringify(data));
+            fs.writeFileSync(process.env.DATA, JSON.stringify(data));
         
             let Loose = RatioNumberW - RatioCount;
             let WinRate = Math.round(((RatioNumberW / RatioCount) * 100) * 100) / 100;

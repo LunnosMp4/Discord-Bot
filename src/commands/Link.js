@@ -2,9 +2,9 @@
 // https://github.com/LunnosMp4/Discord-Bot
 // License: MIT
 
-var config = require('../../config.json');
+require("dotenv").config();
 var SteamAPI = require('steamapi');
-var steam = new SteamAPI(config.steamAPI);
+var steam = new SteamAPI(process.env.STEAMAPI);
 var fs = require('fs');
 
 function SteamLink(message, args, core, data)
@@ -18,7 +18,7 @@ function SteamLink(message, args, core, data)
             });
         } else
             data.log[user].steamID = id;
-        fs.writeFileSync(config.data, JSON.stringify(data));
+        fs.writeFileSync(process.env.DATA, JSON.stringify(data));
 
         core.SendEmbedMessage(
             "Steam",

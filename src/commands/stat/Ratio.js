@@ -2,7 +2,7 @@
 // https://github.com/LunnosMp4/Discord-Bot
 // License: MIT
 
-const config = require("../../../config.json");
+require("dotenv").config();
 const { MessageEmbed } = require("discord.js");
 const QuickChart = require('quickchart-js');
 
@@ -81,8 +81,6 @@ function Ratio(message, args, core, data)
             }]
         },
     });
-
-    
 
     let embed = new MessageEmbed()
         embed.setTitle("Ratio Stat !")

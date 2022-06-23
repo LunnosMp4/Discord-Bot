@@ -2,9 +2,9 @@
 // https://github.com/LunnosMp4/Discord-Bot
 // License: MIT
 
-var config = require('../../../config.json');
+require("dotenv").config();
 var SteamAPI = require('steamapi');
-var steam = new SteamAPI(config.steamAPI);
+var steam = new SteamAPI(process.env.STEAMAPI);
 const { MessageEmbed } = require("discord.js");
 let country = require("country-list");
 

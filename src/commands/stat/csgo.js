@@ -2,9 +2,9 @@
 // https://github.com/LunnosMp4/Discord-Bot
 // License: MIT
 
-config = require('../../../config.json');
 var SteamAPI = require('steamapi');
-var steam = new SteamAPI(config.steamAPI);
+require("dotenv").config();
+var steam = new SteamAPI(process.env.STEAMAPI);
 const { MessageEmbed } = require("discord.js");
 var axios = require('axios');
 
@@ -159,7 +159,7 @@ function Csgo(message, args, core, data)
         setTimeout(() => msg.delete(), 5000)
     });
     try {
-        axios.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + config.steamAPI + '&steamid=' + steamID)
+        axios.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + process.env.STEAMAPI + '&steamid=' + steamID)
         .then(function (response) {
             let data = response.data;
             embed = DisplayMain(data);
