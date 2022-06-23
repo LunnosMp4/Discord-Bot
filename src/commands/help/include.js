@@ -8,5 +8,6 @@ module.exports = {
     Profil: require("./Profil.js").Profil,
     Link: require("./Link.js").Link,
     Stat: require("./Stat.js").Stat,
-    Ratio: require("./Ratio.js").Ratio
+    Ratio: require("./Ratio.js").Ratio,
+    Author: require("./Author.js").Author
 };

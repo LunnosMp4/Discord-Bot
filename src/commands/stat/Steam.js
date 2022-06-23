@@ -98,14 +98,12 @@ function DisplayFriends(user, friends)
 function Steam(message, args, core, data)
 {
     var user = core.GetUserInList(data, message.author.id);
-    if (user == -1)
-    {
+    if (user == -1) {
         message.channel.send("You don't have a steam account linked to your discord account.");
         return;
     }
     var steamID = data.log[user].steamID;
-    if (steamID == null)
-    {
+    if (steamID == null) {
         message.channel.send("You don't have a steam account linked to your discord account.");
         return;
     }
@@ -130,13 +128,11 @@ function Steam(message, args, core, data)
                                     embed = DisplaySummary(user, level, badges);
                                     msg.edit({embeds: [embed]});
                                     reaction.users.remove(message.author.id);
-                                }
-                                else if (reaction.emoji.name === secondEmoji) {
+                                } else if (reaction.emoji.name === secondEmoji) {
                                     embed = DisplayGames(user, games);
                                     msg.edit({embeds: [embed]});
                                     reaction.users.remove(message.author.id);
-                                }
-                                else if (reaction.emoji.name === thirdEmoji) {
+                                } else if (reaction.emoji.name === thirdEmoji) {
                                     embed = DisplayFriends(user, friends);
                                     msg.edit({embeds: [embed]});
                                     reaction.users.remove(message.author.id);

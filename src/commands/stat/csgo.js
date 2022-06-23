@@ -146,55 +146,60 @@ function BestMap(data)
 function Csgo(message, args, core, data)
 {
     var user = core.GetUserInList(data, message.author.id);
-    if (user == -1)
-    {
+    if (user == -1) {
         message.channel.send("You don't have a steam account linked to your discord account.");
         return;
     }
     var steamID = data.log[user].steamID;
-    if (steamID == null)
-    {
+    if (steamID == null) {
         message.channel.send("You don't have a steam account linked to your discord account.");
         return;
     }
     message.reply("Please wait while I fetch your stats...").then(msg => {
         setTimeout(() => msg.delete(), 5000)
     });
-    axios.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + config.steamAPI + '&steamid=' + steamID)
-    .then(function (response) {
-        let data = response.data;
-        embed = DisplayMain(data);
-        message.channel.send({embeds: [embed]}).then(msg => {
-            msg.react(thirdEmoji);
-            msg.react(secondEmoji);
-            msg.react(firstEmoji);
-            const filter = (reaction, user) => {
-                return (reaction.emoji.name === firstEmoji || reaction.emoji.name === secondEmoji ||
-                    reaction.emoji.name === thirdEmoji) && user.id !== core.bot.user.id;
-            }
-            const collector = msg.createReactionCollector(filter, { time: 60000 });
-            collector.on('collect', (reaction, user) => {
-                if (reaction.emoji.name === firstEmoji)
-                {
-                    embed = DisplayMain(data);
-                    msg.edit({embeds: [embed]});
-                    reaction.users.remove(message.author.id);
+    try {
+        axios.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=730&key=' + config.steamAPI + '&steamid=' + steamID)
+        .then(function (response) {
+            let data = response.data;
+            embed = DisplayMain(data);
+            message.channel.send({embeds: [embed]}).then(msg => {
+                msg.react(thirdEmoji);
+                msg.react(secondEmoji);
+                msg.react(firstEmoji);
+                const filter = (reaction, user) => {
+                    return (reaction.emoji.name === firstEmoji || reaction.emoji.name === secondEmoji ||
+                        reaction.emoji.name === thirdEmoji) && user.id !== core.bot.user.id;
                 }
-                else if (reaction.emoji.name === secondEmoji)
-                {
-                    embed = AdvancedStat(data);
-                    msg.edit({embeds: [embed]});
-                    reaction.users.remove(message.author.id);
-                }
-                else if (reaction.emoji.name === thirdEmoji)
-                {
-                    embed = DisplayLast(data, core);
-                    msg.edit({embeds: [embed]});
-                    reaction.users.remove(message.author.id);
-                }
+                const collector = msg.createReactionCollector(filter, { time: 60000 });
+                collector.on('collect', (reaction, user) => {
+                    if (reaction.emoji.name === firstEmoji) {
+                        embed = DisplayMain(data);
+                        msg.edit({embeds: [embed]});
+                        reaction.users.remove(message.author.id);
+                    } else if (reaction.emoji.name === secondEmoji) {
+                        embed = AdvancedStat(data);
+                        msg.edit({embeds: [embed]});
+                        reaction.users.remove(message.author.id);
+                    } else if (reaction.emoji.name === thirdEmoji) {
+                        embed = DisplayLast(data, core);
+                        msg.edit({embeds: [embed]});
+                        reaction.users.remove(message.author.id);
+                    }
+                });
+            });
+        }).catch(function (error) {
+            console.error(error);
+            message.channel.send("An error occured while fetching your stats. (CSGO API is probably not available).\nPlease try again later.\nIf the error persists, please contact the bot owner. `'author`").then(msg => {
+                setTimeout(() => msg.delete(), 15000)
             });
         });
-    });
+    } catch (err) {
+        console.error(err);
+        message.channel.send("An error occured while fetching your stats. (CSGO API is probably not available).\nPlease try again later.\nIf the error persists, please contact the bot owner. `'author`").then(msg => {
+            setTimeout(() => msg.delete(), 15000)
+        });
+    }
 }
 
 module.exports = { Csgo };

@@ -16,17 +16,14 @@ function AppList(appList)
 
 function Stat(message, args, commands, core, data)
 {
-    if (args.length === 0)
-    {
+    if (args.length === 0) {
         message.channel.send("Please provide an application\nSee `'help stat` for more information.");
         return;
     }
     let appList;
     appList = AppList(appList);
-    for (let i = 0; i < appList.length; i++)
-    {
-        if (args[0] === appList[i][0])
-        {
+    for (let i = 0; i < appList.length; i++) {
+        if (args[0] === appList[i][0]) {
             appList[i][1](message, args, core, data);
             return;
         }

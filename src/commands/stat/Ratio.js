@@ -9,15 +9,13 @@ const QuickChart = require('quickchart-js');
 function Ratio(message, args, core, data)
 {
     let user = core.GetUserInList(data, message.author.id);
-    if (user == -1)
-    {
+    if (user == -1) {
         message.reply("You never Ratio anyone !").then(msg => {
             setTimeout(() => msg.delete(), 5000)
         });
         return;
     }
-    if (!data.log[user].ratio || !data.log[user].ratioNb)
-    {
+    if (!data.log[user].ratio || !data.log[user].ratioNb) {
         message.reply("You never Ratio anyone !").then(msg => {
             setTimeout(() => msg.delete(), 5000)
         });
@@ -27,13 +25,12 @@ function Ratio(message, args, core, data)
     let Loses = data.log[user].ratioNb - data.log[user].ratio;
     let WinRate = Math.round(((data.log[user].ratio / Loses) * 100) * 100) / 100;
 
-    const chart = new QuickChart();
-
-    chart.setWidth(350)
-    chart.setHeight(350)
+    const chartDonut = new QuickChart();
+    chartDonut.setWidth(350)
+    chartDonut.setHeight(350)
     .setBackgroundColor('transparent');
 
-    chart.setConfig({
+    chartDonut.setConfig({
             type: 'doughnut',
             data: {
                 datasets: [
@@ -61,17 +58,43 @@ function Ratio(message, args, core, data)
                 }
             },
         });
+    
+    const chartBar = new QuickChart();
+
+    chartBar.setWidth(400)
+    chartBar.setHeight(150)
+    .setBackgroundColor('transparent');
+
+    chartBar.setConfig({
+        type: 'progressBar',
+        data: {
+            datasets: [{
+                backgroundColor: "#F55438",
+                data: [WinRate],
+                datalabels: {
+                    font: {
+                        style: 'Arial',
+                        size: 50,
+                        color: '#ffffff'
+                    }
+                }
+            }]
+        },
+    });
+
+    
 
     let embed = new MessageEmbed()
         embed.setTitle("Ratio Stat !")
         embed.setDescription(`Here the stat for ${message.author.username} !`)
         embed.setColor("#03fcd3")
+        embed.setThumbnail(chartBar.getUrl())
         embed.addFields(
             { name: "Wins", value: `${data.log[user].ratio}`, inline: true },
             { name: "Loses", value: `${Loses}`, inline: true },
             { name: "Total", value: `${data.log[user].ratioNb}`, inline: true }
         )
-        embed.setImage(chart.getUrl())
+        embed.setImage(chartDonut.getUrl())
         embed.setTimestamp()
         embed.setFooter({ text : "Pato" });
     message.channel.send({ embeds: [embed] });

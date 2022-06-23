@@ -45,12 +45,16 @@ bot.on("messageCreate", async (message) => {
     if (message.content.indexOf(prefix) !== 0) return;
 
     const user = core.GetUserInList(data, message.author.id);
-    if (user == -1)
-    {
+    if (user == -1) {
         data.log.push({
             user: message.author.id
         });
+        message.author.send(`Hi **${message.author.username}**,
+        Thank for using me !\nYou can use `+ "`" + "'help" + "`" +
+        ` to see all my commands !\n Have a nice day :p`);
+        console.log(`${message.author.username} has been added to the database.`);
     }
+
     fs.writeFileSync(config.data, JSON.stringify(data));
 
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
@@ -60,8 +64,13 @@ bot.on("messageCreate", async (message) => {
 
     // Execute commands
     for (let i = 0; i < commands.length; i++)
-        if (command === commands[i][0])
-            commands[i][1](message, args, commands, core, data);
+        if (command === commands[i][0]) {
+            try {
+                commands[i][1](message, args, commands, core, data);
+            } catch (err) {
+                console.error(err);
+            }
+        }
 });
 
 bot.login(token)

@@ -35,28 +35,24 @@ async function CheckWins(message, data, core, mention)
             let RatioNumberL = 1;
 
             const user = core.GetUserInList(data, winner.author.id);
-            if (user == -1)
-            {
+            if (user == -1) {
                 data.log.push({
                     user: winner.author.id,
                     ratio: RatioCount,
                     ratioNb: RatioNumberW,
                 });
-            }
-            else if (data.log[user].ratio && data.log[user].ratioNb) {
+            } else if (data.log[user].ratio && data.log[user].ratioNb) {
                 data.log[user].ratio += 1;
                 data.log[user].ratioNb += 1;
                 RatioCount = data.log[user].ratio;
                 RatioNumberW = data.log[user].ratioNb;
-            }
-            else {
+            } else {
                 data.log[user].ratioNb = 1;
                 data.log[user].ratio = 1;
             }
 
             const user2 = core.GetUserInList(data, loser.author.id);
-            if (user2 == -1)
-            {
+            if (user2 == -1) {
                 data.log.push({
                     user: loser.author.id,
                     ratio: 0,
@@ -94,7 +90,7 @@ async function CheckWins(message, data, core, mention)
             });
             return;
         }
-    }, 3600000);
+    }, 10000);
 }
 
 async function GetLastMessage(message, data, core)
@@ -115,7 +111,7 @@ async function GetLastMessage(message, data, core)
 
         CheckWins(message, data, core, lastMessage);
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 

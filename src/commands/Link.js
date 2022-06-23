@@ -11,8 +11,7 @@ function SteamLink(message, args, core, data)
 {
     steam.resolve(args[1]).then(id => {
         var user = core.GetUserInList(data, message.author.id);
-        if (user == -1)
-        {
+        if (user == -1) {
             data.log.push({
                 user: message.author.id,
                 steamID: id
@@ -56,26 +55,21 @@ function AppList(appList)
 
 function Link(message, args, commands, core, data)
 {
-    if (message.channel.type !== "DM")
-    {
+    if (message.channel.type !== "DM") {
         message.channel.send("This command must be used in DM.");
         return;
     }
-    if (args.length == 0)
-    {
+    if (args.length == 0) {
         message.channel.send("Please provide an application with the token.\nSee `'help link` for more information.");
         return;
     }
-    if (args.length == 1)
-    {
+    if (args.length == 1) {
         message.channel.send("Please provide a token.\nSee `'help link` for more information.");
         return;
     }
     var appList = AppList(appList);
-    for (let i = 0; i < appList.length; i++)
-    {
-        if (args[0] === appList[i][0])
-        {
+    for (let i = 0; i < appList.length; i++) {
+        if (args[0] === appList[i][0]) {
             appList[i][1](message, args, core, data);
             return;
         }

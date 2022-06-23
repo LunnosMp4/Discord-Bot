@@ -9,11 +9,11 @@ function GetStatus(status)
 {
     if (status === "online")
         return "Online";
-    else if (status === "idle")
+    if (status === "idle")
         return "Idle";
-    else if (status === "dnd")
+    if (status === "dnd")
         return "Do Not Disturb";
-    else if (status === "offline")
+    if (status === "offline")
         return "Offline";
 }
 
@@ -42,30 +42,34 @@ function Profil(message, args, commands, core, data)
         );
 
     let embed = new MessageEmbed()
-        .setAuthor({
+        embed.setAuthor({
             name: `${user.tag}`,
             iconURL: `${user.displayAvatarURL({ dynamic : true })}`
         })
-        .setDescription(`Here The Profil from ${user.username} !`)
-        .setColor(color)
-        .setThumbnail(user.displayAvatarURL({ dynamic : true }))
-        .addFields(
+        embed.setDescription(`Here The Profil from ${user.username} !`)
+        embed.setColor(color)
+        embed.setThumbnail(user.displayAvatarURL({ dynamic : true }))
+        embed.addFields(
             { name: `${user.username}'s info`, value: `ID: ${user.id}\nTag: ${user.tag}` },
             { name: 'Create Account', value: `${moment.utc(user.createdAt).format('DD/MM/YY')}`, inline: true },
             { name: '\u200B', value: '\u200B', inline: true },
             { name: 'Joined Server', value: `${moment.utc(mem.joinedAt).format('DD/MM/YY')}`, inline: true },
         )
-        .addFields(
-            { name: 'Activities', value: `${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].type))}\
-            ${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].name))}`, inline: true },
-            { name: '\u200B', value: '\u200B', inline: true },
-            { name: 'Status', value: `${status}`, inline: true },
+        if (message.member.presence.activities[0]) {
+            embed.addFields(
+                { name: 'Activities', value: `${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].type))}\
+                ${UpFirstChar(LowerOtherChar(message.member.presence.activities[0].name))}`, inline: true },
+                { name: '\u200B', value: '\u200B', inline: true },
+            )
+        }
+        embed.addFields(
+            { name: 'Status', value: `${status}`, inline: true }
         )
-        .addFields(
-            { name: 'Linked account', value: `Steam : ${getSteam}\nSpotify : Not Linked :(` }
+        embed.addFields(
+            { name: 'Linked account', value: `Steam : ${getSteam}\nSpotify : Not Linked` }
         )
-        .setTimestamp()
-        .setFooter({ text : "Pato" });
+        embed.setTimestamp()
+        embed.setFooter({ text : "Pato" });
     message.channel.send({embeds: [embed]});
 }
 

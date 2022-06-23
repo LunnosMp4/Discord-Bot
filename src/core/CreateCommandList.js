@@ -14,6 +14,7 @@ function CreateCommandList(commands)
         ["link", cmd.Link, help.Link],
         ["stat", cmd.Stat, help.Stat],
         ["ratio", cmd.Ratio, help.Ratio],
+        ["author", cmd.Author, help.Author]
     ];
     return commands;
 }

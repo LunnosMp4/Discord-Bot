@@ -22,7 +22,7 @@ function Clear(message, args, commands, core, data)
         message.channel.send(`Clearing ${showmsg} messages ...`).then(msg => {
             msg.delete(number);
         }).catch(err => {
-            console.log(err);
+            console.error(err);
         });
     });
 }

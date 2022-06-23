@@ -21,8 +21,7 @@ function SendEmbedMessage(Title, Description, Color, Thumbnail, Fields, Footer, 
         FieldsArrayCounter = FieldsArrayCounter + 2;
     }
 
-    if (image === null || image === undefined)
-    {
+    if (image === null || image === undefined) {
         const embed = new MessageEmbed()
             embed.setTitle(`${Title}`)
             embed.setDescription(`${Description}`)
