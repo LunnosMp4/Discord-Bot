@@ -90,7 +90,7 @@ async function CheckWins(message, data, core, mention)
             });
             return;
         }
-    }, 10000);
+    }, 3600000);
 }
 
 async function GetLastMessage(message, data, core)
