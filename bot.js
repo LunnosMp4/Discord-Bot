@@ -16,6 +16,7 @@ const bot = new Client({
         Intents.FLAGS.GUILD_VOICE_STATES
     ]
 });
+const fs = require("fs");
 
 // Load the config file to the bot.
 const config = require("./config.json");
@@ -42,6 +43,15 @@ bot.on("ready", () => {
 bot.on("messageCreate", async (message) => {
     if (message.author.bot) return;
     if (message.content.indexOf(prefix) !== 0) return;
+
+    const user = core.GetUserInList(data, message.author.id);
+    if (user == -1)
+    {
+        data.log.push({
+            user: message.author.id
+        });
+    }
+    fs.writeFileSync(config.data, JSON.stringify(data));
 
     let args = message.content.slice(prefix.length).trim().split(/ +/g);
     for (let i = 0; i < args.length; i++)

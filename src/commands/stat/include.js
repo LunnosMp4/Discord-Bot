@@ -3,5 +3,7 @@
 // License: MIT
 
 module.exports = {
-    Steam: require("./Steam.js").Steam
+    Steam: require("./Steam.js").Steam,
+    Csgo: require("./csgo.js").Csgo,
+    Ratio: require("./Ratio.js").Ratio,
 };

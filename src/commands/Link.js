@@ -18,9 +18,9 @@ function SteamLink(message, args, core, data)
                 steamID: id
             });
         } else
-            data.log[user].id = id;
-
+            data.log[user].steamID = id;
         fs.writeFileSync(config.data, JSON.stringify(data));
+
         core.SendEmbedMessage(
             "Steam",
             "Your account has been linked !",

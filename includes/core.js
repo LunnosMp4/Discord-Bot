@@ -6,5 +6,7 @@ module.exports = {
     GetUserInList: require('../src/core/GetUserInList.js').GetUserInList,
     SendEmbedMessage: require("../src/core/SendEmbedMessage.js").SendEmbedMessage,
     CreateDataList: require("../src/core/CreateDataList.js").CreateDataList,
-    CreateCommandList: require("../src/core/CreateCommandList.js").CreateCommandList
+    CreateCommandList: require("../src/core/CreateCommandList.js").CreateCommandList,
+    GetWeaponName: require("../src/core/GetWeaponName.js").GetWeaponName,
+    SaveData: require("../src/core/SaveData.js").SaveData,
 };

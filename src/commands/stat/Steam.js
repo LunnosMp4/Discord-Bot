@@ -57,7 +57,7 @@ function DisplayGames(user, games)
     });
 
     let embed = new MessageEmbed()
-        embed.setTitle("Recent Games")
+        embed.setTitle("Most Played Games")
         embed.setDescription(`Here The Games from ${user.nickname} !`)
         embed.setColor("#03fc77")
         embed.setThumbnail(user.avatar.large)

@@ -7,7 +7,9 @@ const stats = require('./include.js');
 function AppList(appList)
 {
     appList = [
-        ["steam", stats.Steam]
+        ["steam", stats.Steam],
+        ["csgo", stats.Csgo],
+        ["ratio", stats.Ratio],
     ];
     return appList;
 }

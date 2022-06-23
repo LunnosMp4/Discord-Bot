@@ -7,5 +7,6 @@ module.exports = {
     Clear: require("./Clear.js").Clear,
     Profil: require("./Profil.js").Profil,
     Link: require("./Link.js").Link,
-    Stat: require("./Stat.js").Stat
+    Stat: require("./Stat.js").Stat,
+    Ratio: require("./Ratio.js").Ratio
 };

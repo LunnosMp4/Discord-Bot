@@ -9,7 +9,7 @@ function Stat(core, message)
         "The command **stat** is used to show your profile in game / app.",
         "#03fcd3",
         null,
-        "Command help.,• stat steam <user>\n*Show your steam profile with all data.\nIf you're account is not linked you must enter you're steam id here.*,\
+        "Command help.,• **stat steam**\n*Show your steam profile. (must be logged in with steam)*\n• **stat csgo**\n*Show your game profile. (must be logged in with steam)*\n• **stat ratio**\n*Show your ratio statistics. (must have played at least once)\n-> 'help ratio*,\n\
         Permission, No Specific permission.\n",
         "Pato",
         null,
