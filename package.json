@@ -8,6 +8,7 @@
     "discord.js": "^13.8.0",
     "fs": "^0.0.1-security",
     "moment": "^2.29.3",
+    "protobufjs": "^6.11.3",
     "quickchart-js": "^3.0.1",
     "steam": "^1.4.1",
     "steamapi": "^2.2.0"
