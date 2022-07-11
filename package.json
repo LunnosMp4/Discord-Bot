@@ -5,7 +5,7 @@
     "csgo": "^1.5.15",
     "csgostatsnode": "^1.1.1",
     "csv-parse": "^5.2.0",
-    "discord.js": "^13.8.0",
+    "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
     "fs": "^0.0.1-security",
     "moment": "^2.29.3",

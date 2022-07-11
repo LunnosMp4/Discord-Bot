@@ -48,8 +48,6 @@ bot.on("messageCreate", async (message) => {
         data.log.push({
             user: message.author.id
         });
-        message.author.send(`Hi **${message.author.username}**, Thank for using me !\nYou can use `+ "`" + "'help" + "`" +
-        ` to see all my commands !\n Have a nice day :p`);
         console.log(`${message.author.username} has been added to the database.`);
     }
 

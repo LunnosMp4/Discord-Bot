@@ -10,10 +10,17 @@ async function CheckWins(message, data, core, mention)
 {
     setTimeout(() => {
         try {
-            const reactions = mention.reactions.cache.get("🔁");
-            const total = reactions.users.cache.size;
-            const reactions2 = message.reactions.cache.get("🔁");
-            const total2 = reactions2.users.cache.size;
+            const reactions_user_1_1 = mention.reactions.cache.get("🔁");
+            const reactions_user_1_2 = mention.reactions.cache.get("♥️");
+            const total_user_1_1 = reactions_user_1_1.users.cache.size;
+            const total_user_1_2 = reactions_user_1_2.users.cache.size;
+            const reactions_user_2_1 = message.reactions.cache.get("🔁");
+            const reactions_user_2_2 = message.reactions.cache.get("♥️");
+            const total_user_2_1 = reactions_user_2_1.users.cache.size;
+            const total_user_2_2 = reactions_user_2_2.users.cache.size;
+
+            const total = total_user_1_1 >= total_user_1_2 ? total_user_1_1 : total_user_1_2;
+            const total2 = total_user_2_1 >= total_user_2_2 ? total_user_2_1 : total_user_2_2;
 
             if (total == total2) {
                 const embed1 = new MessageEmbed()
