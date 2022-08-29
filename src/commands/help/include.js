@@ -9,5 +9,6 @@ module.exports = {
     Link: require("./Link.js").Link,
     Stat: require("./Stat.js").Stat,
     Ratio: require("./Ratio.js").Ratio,
-    Author: require("./Author.js").Author
+    Author: require("./Author.js").Author,
+    Meme: require("./Meme.js").Meme
 };

@@ -10,6 +10,8 @@ function AppList(appList)
         ["steam", stats.Steam],
         ["csgo", stats.Csgo],
         ["ratio", stats.Ratio],
+        //TODO Rocket League Stats
+        
     ];
     return appList;
 }
