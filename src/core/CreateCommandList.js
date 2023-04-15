@@ -16,7 +16,7 @@ function CreateCommandList(commands)
         ["ratio", cmd.Ratio, help.Ratio],
         ["author", cmd.Author, help.Author],
         ["meme", cmd.Meme, help.Meme],
-        
+        ["vote", cmd.Vote, help.Vote],
     ];
     return commands;
 }

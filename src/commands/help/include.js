@@ -10,5 +10,6 @@ module.exports = {
     Stat: require("./Stat.js").Stat,
     Ratio: require("./Ratio.js").Ratio,
     Author: require("./Author.js").Author,
-    Meme: require("./Meme.js").Meme
+    Meme: require("./Meme.js").Meme,
+    Vote: require("./Vote.js").Vote,
 };
