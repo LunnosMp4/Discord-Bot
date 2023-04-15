@@ -44,7 +44,7 @@ async function RedMatchVote(message, args, commands, core, data)
         message.channel.send(mapE);
 
         // Envoyer le message avec les réactions pour voter
-        const voteMessage = await message.channel.send("Choisissez la map à Bannir !");
+        const voteMessage = await message.channel.send("Choisissez les maps à bannir !");
         await voteMessage.react("🇦");
         await voteMessage.react("🇧");
         await voteMessage.react("🇨");
